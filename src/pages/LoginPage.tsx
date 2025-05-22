@@ -29,7 +29,7 @@ const LoginPage = () => {
           <h1 style={{ 
             color: 'var(--mineral-green)',
             marginBottom: '10px',
-            fontFamily: "'Bugaki', 'Montserrat', sans-serif"
+            fontFamily: "'Montserrat', sans-serif"
           }}>
             {isLogin ? 'Entrar' : 'Criar uma Conta'}
           </h1>

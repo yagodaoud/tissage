@@ -18,7 +18,7 @@ const Footer = () => {
                 fontSize: '1.8rem', 
                 fontWeight: 'bold',
                 textDecoration: 'none',
-                fontFamily: "'Bugaki', 'Montserrat', sans-serif"
+                fontFamily: "'Montserrat-Bold', sans-serif"
               }}>
                 TISSAGE
               </Link>

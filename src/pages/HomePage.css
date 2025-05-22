@@ -1,15 +1,16 @@
 @font-face {
-  font-family: 'Bugaki';
-  src: url('/fonts/Bugaki.woff2') format('woff2'),
-       url('/fonts/Bugaki.woff') format('woff'),
-       url('/fonts/Bugaki.ttf') format('truetype');
+  font-family: 'Monterrat-Bold';
+  src: url('/fonts/Montserrat-Bold.woff2') format('woff2'),
+       url('/fonts/Montserrat-Bold.woff') format('woff'),
+       url('/fonts/Montserrat-Bold.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
+
 * {
-  font-family: 'Bugaki', sans-serif;
+  font-family: 'Monterrat-Bold', sans-serif;
 }
 
 .hero-carousel {
@@ -59,7 +60,7 @@
   }
   
   .carousel-title {
-    font-family: 'Bugaki', 'Montserrat', serif;
+    font-family: 'Monterrat-Bold', sans-serif;
     font-size: 64px;
     margin-bottom: 30px;
     color: white;
