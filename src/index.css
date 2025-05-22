@@ -1,0 +1,112 @@
+:root {
+  --mineral-green: #516a5b;
+  --strawberry-cream: #f7d5d5;
+  --white: #ffffff;
+  --black: #333333;
+  --light-gray: #f5f5f5;
+  --medium-gray: #e0e0e0;
+  --dark-gray: #666666;
+}
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+/* Note: Bugaki Regular would need to be added as a custom font file */
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--black);
+  background-color: var(--white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bugaki Regular', 'Montserrat', sans-serif;
+  color: var(--mineral-green);
+}
+
+a {
+  color: var(--mineral-green);
+  text-decoration: none;
+}
+
+button, .button {
+  background-color: var(--mineral-green);
+  color: var(--white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover {
+  background-color: #3e5246;
+}
+
+.secondary-button {
+  background-color: var(--strawberry-cream);
+  color: var(--mineral-green);
+}
+
+.secondary-button:hover {
+  background-color: #f0c0c0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header styles */
+header {
+  background-color: var(--mineral-green);
+  color: var(--white);
+  padding: 15px 0;
+}
+
+/* Footer styles */
+footer {
+  background-color: var(--mineral-green);
+  color: var(--white);
+  padding: 30px 0;
+  margin-top: 50px;
+}
+
+/* Product card styles */
+.product-card {
+  border: 1px solid var(--medium-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styles */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--medium-gray);
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  button, .button {
+    padding: 8px 16px;
+  }
+}
