@@ -49,7 +49,7 @@ const ProductDetailPage = () => {
       <div className="container" style={{ padding: '40px 0' }}>
         <div className="breadcrumbs" style={{ marginBottom: '20px' }}>
           <Link to="/" style={{ color: 'var(--dark-gray)' }}>Home</Link> &gt; 
-          <Link to="/products" style={{ color: 'var(--dark-gray)', margin: '0 5px' }}>Products</Link> &gt; 
+          <Link to="/products" style={{ color: 'var(--dark-gray)', margin: '0 5px' }}>Produtos</Link> &gt; 
           <span style={{ color: 'var(--mineral-green)' }}>{product.name}</span>
         </div>
         
@@ -69,7 +69,7 @@ const ProductDetailPage = () => {
               alignItems: 'center',
               color: '#999'
             }}>
-              Product Image {activeImage + 1}
+              Imagem {activeImage + 1}
             </div>
             
             <div className="image-thumbnails" style={{ 
@@ -102,7 +102,7 @@ const ProductDetailPage = () => {
             <h1 style={{ marginBottom: '10px', color: 'var(--mineral-green)' }}>{product.name}</h1>
             
             <div className="artisan-link" style={{ marginBottom: '20px' }}>
-              <p>By <Link to={`/artisans/${artisan.id}`} style={{ color: 'var(--mineral-green)', fontWeight: 'bold' }}>{artisan.name}</Link></p>
+              <p>Por <Link to={`/artisans/${artisan.id}`} style={{ color: 'var(--mineral-green)', fontWeight: 'bold' }}>{artisan.name}</Link></p>
             </div>
             
             <div className="price" style={{ 
@@ -111,7 +111,7 @@ const ProductDetailPage = () => {
               marginBottom: '20px',
               color: 'var(--mineral-green)'
             }}>
-              ${product.price.toFixed(2)}
+              R${product.price.toFixed(2)}
             </div>
             
             <div className="description" style={{ marginBottom: '30px' }}>
@@ -125,19 +125,19 @@ const ProductDetailPage = () => {
               rowGap: '15px'
             }}>
               <div className="meta-item">
-                <strong>Category:</strong> {product.category}
+                <strong>Categoria:</strong> {product.category}
               </div>
               
               <div className="meta-item">
-                <strong>Materials:</strong> {product.materials.join(', ')}
+                <strong>Materiais:</strong> {product.materials.join(', ')}
               </div>
               
               <div className="meta-item">
-                <strong>Dimensions:</strong> {product.dimensions}
+                <strong>Dimensões:</strong> {product.dimensions}
               </div>
               
               <div className="meta-item">
-                <strong>In Stock:</strong> {product.inStock}
+                <strong>Em estoque:</strong> {product.inStock}
               </div>
             </div>
             
@@ -148,7 +148,7 @@ const ProductDetailPage = () => {
               marginBottom: '30px'
             }}>
               <div className="quantity">
-                <label htmlFor="quantity" style={{ marginRight: '10px' }}>Quantity:</label>
+                <label htmlFor="quantity" style={{ marginRight: '10px' }}>Quantidade:</label>
                 <select 
                   id="quantity" 
                   value={quantity} 
@@ -166,7 +166,7 @@ const ProductDetailPage = () => {
                 className="button"
                 style={{ flex: 1 }}
               >
-                Add to Cart
+                Adicionar ao carrinho
               </button>
             </div>
             
@@ -175,7 +175,7 @@ const ProductDetailPage = () => {
               padding: '15px',
               borderRadius: '8px'
             }}>
-              <p><strong>Shipping:</strong> Handmade items typically ship within 1-2 weeks</p>
+              <p><strong>Envio:</strong> Itens feitos à mão geralmente são enviados em 1-2 semanas</p>
             </div>
           </div>
         </div>
@@ -186,7 +186,7 @@ const ProductDetailPage = () => {
           borderRadius: '8px',
           marginBottom: '40px'
         }}>
-          <h2 style={{ marginBottom: '15px' }}>About the Artisan</h2>
+          <h2 style={{ marginBottom: '15px' }}>Sobre o artesão</h2>
           
           <div style={{ 
             display: 'flex', 
@@ -216,14 +216,14 @@ const ProductDetailPage = () => {
                 color: 'var(--mineral-green)',
                 fontWeight: 'bold'
               }}>
-                View Artisan Profile
+                Ver perfil do artesão
               </Link>
             </div>
           </div>
         </div>
         
         <div className="related-products">
-          <h2 style={{ marginBottom: '20px' }}>You May Also Like</h2>
+          <h2 style={{ marginBottom: '20px' }}>Você pode gostar</h2>
           
           <div className="products-grid" style={{ 
             display: 'grid', 

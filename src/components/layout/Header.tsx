@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = () => {
   useEffect(() => {
     const controlHeader = () => {
       const currentScrollY = window.scrollY;
-      
+     
       // Show header when at top of page
       if (currentScrollY < 10) {
         setIsVisible(true);
@@ -23,12 +23,12 @@ const Header: React.FC<HeaderProps> = () => {
       } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
-      
+     
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', controlHeader);
-    
+   
     // Cleanup
     return () => {
       window.removeEventListener('scroll', controlHeader);
@@ -78,19 +78,23 @@ const Header: React.FC<HeaderProps> = () => {
             >
               Produtos
             </Link>
+            <Link
+              to="/carrinho"
+              className={`cart-nav-item ${activeTab === 'carrinho' ? 'active' : ''}`}
+              onClick={() => setActiveTab('carrinho')}
+            >
+              <span>Carrinho</span>
+              <div className="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+                <span className="cart-count">0</span>
+              </div>
+            </Link>
           </nav>
         </div>
        
         <div className="header-right">
-          <Link to="/carrinho" className="cart-button">
-            Carrinho
-            <div className="cart-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-              </svg>
-              <span className="cart-count">0</span>
-            </div>
-          </Link>
           <div className="search-container">
             <input type="text" placeholder="Buscar" className="search-input" />
             <button className="search-button">
