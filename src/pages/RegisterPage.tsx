@@ -25,7 +25,7 @@ const RegisterPage = () => {
           <h1 style={{ 
             color: 'var(--mineral-green)',
             marginBottom: '10px',
-            fontFamily: "'Bugaki Regular', 'Montserrat', sans-serif"
+            fontFamily: "'Bugaki', 'Montserrat', sans-serif"
           }}>
             Criar uma Conta
           </h1>

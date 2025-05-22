@@ -10,24 +10,27 @@
   
   @font-face {
     font-family: 'Bugaki';
-    src: local('Bugaki');
-    /* In production, you would add the actual font files */
+    src: url('/fonts/Bugaki.woff2') format('woff2'),
+         url('/fonts/Bugaki.woff') format('woff'),
+         url('/fonts/Bugaki.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
   }
   
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Bugaki', sans-serif;
   }
   
   body {
-    font-family: 'Montserrat', sans-serif;
     color: var(--black);
     line-height: 1.6;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bugaki', 'Montserrat', sans-serif;
     color: var(--mineral-green);
   }
   
@@ -56,7 +59,7 @@
   }
   
   .button:hover {
-    background-color: #3e5246;
+    background-color: #516a5b;
   }
   
   .button.secondary {
@@ -85,7 +88,7 @@
   }
   
   .logo {
-    font-family: 'Bugaki', 'Montserrat', sans-serif;
+    font-family: 'Bugaki', sans-serif;
     font-size: 28px;
     color: var(--mineral-green);
     font-weight: bold;
@@ -148,6 +151,7 @@
   .section-title {
     text-align: center;
     margin-bottom: 50px;
+    font-family: 'Bugaki', sans-serif;
   }
   
   .categories-grid {
