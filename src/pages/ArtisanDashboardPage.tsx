@@ -263,9 +263,9 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     backgroundColor: 'var(--light-gray)',
                     fontWeight: 'bold'
                   }}>
-                    <div>Order ID</div>
-                    <div>Customer</div>
-                    <div>Date</div>
+                    <div>ID do Pedido</div>
+                    <div>Cliente</div>
+                    <div>Data</div>
                     <div>Total</div>
                     <div>Status</div>
                   </div>
@@ -549,7 +549,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                       <input 
                         type="password" 
                         id="confirmNewPassword" 
-                        placeholder="Confirm your new password"
+                        placeholder="Confirmar Senha"
                         style={{ 
                           width: '100%',
                           padding: '12px',
@@ -560,7 +560,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     </div>
                     
                     <button type="button" className="button" style={{ justifySelf: 'start' }}>
-                      Update Password
+                      Atualizar Senha
                     </button>
                   </form>
                 </div>

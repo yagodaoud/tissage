@@ -12,10 +12,8 @@ const Header: React.FC<HeaderProps> = () => {
       {/* Logo Row */}
       <div className="logo-row">
         <div className="logo">
-          <svg className="tissage-logo-svg">
-            <use xlinkHref="/resources/tissage-logo.svg#tissage-logo" />
-          </svg>
-        </div>
+        <img src="/resources/tissage-logo.png" alt="Tissage Logo" className="tissage-logo" />
+      </div>
       </div>
       
       {/* Navigation Row */}
