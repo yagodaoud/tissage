@@ -34,7 +34,7 @@ function App() {
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/artisan-dashboard" element={<ArtisanDashboardPage />} />
+            <Route path="/artesao/:id" element={<ArtisanDashboardPage />} />
           </Routes>
         </main>
         <Footer />

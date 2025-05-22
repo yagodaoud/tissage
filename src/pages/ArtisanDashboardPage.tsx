@@ -9,11 +9,11 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
   return (
     <div className="artisan-dashboard-page">
       <div className="container" style={{ padding: '40px 0' }}>
-        <h1 style={{ marginBottom: '30px', color: 'var(--mineral-green)' }}>Artisan Dashboard</h1>
+        <h1 style={{ marginBottom: '30px', color: 'var(--mineral-green)' }}>Dashboard do Artesão</h1>
         
         <div className="dashboard-layout" style={{ 
           display: 'grid',
-          gridTemplateColumns: '250px 1fr',
+          gridTemplateColumns: '300px 1fr',
           gap: '30px'
         }}>
           <div className="dashboard-sidebar" style={{ 
@@ -43,94 +43,84 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
               </div>
               
               <h3 style={{ marginBottom: '5px' }}>Maria Silva</h3>
-              <p style={{ color: 'var(--dark-gray)', marginBottom: '10px' }}>Handwoven Textiles</p>
-              <Link to="/profile" style={{ color: 'var(--mineral-green)', fontSize: '0.9rem' }}>
-                Edit Profile
-              </Link>
+              <p style={{ color: 'var(--dark-gray)', marginBottom: '10px' }}>Tecelagem Artesanal</p>
+              <span style={{ color: 'var(--mineral-green)', fontSize: '0.9rem', cursor: 'pointer' }}>
+                Editar perfil
+              </span>
             </div>
             
-            <nav className="dashboard-nav">
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                <li style={{ marginBottom: '10px' }}>
-                  <button 
-                    onClick={() => setActiveTab('products')}
-                    style={{ 
-                      display: 'block',
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '12px 15px',
-                      borderRadius: '4px',
-                      border: 'none',
-                      backgroundColor: activeTab === 'products' ? 'var(--mineral-green)' : 'transparent',
-                      color: activeTab === 'products' ? 'white' : 'var(--black)',
-                      cursor: 'pointer',
-                      fontWeight: activeTab === 'products' ? 'bold' : 'normal'
-                    }}
-                  >
-                    Products
-                  </button>
-                </li>
-                
-                <li style={{ marginBottom: '10px' }}>
-                  <button 
-                    onClick={() => setActiveTab('orders')}
-                    style={{ 
-                      display: 'block',
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '12px 15px',
-                      borderRadius: '4px',
-                      border: 'none',
-                      backgroundColor: activeTab === 'orders' ? 'var(--mineral-green)' : 'transparent',
-                      color: activeTab === 'orders' ? 'white' : 'var(--black)',
-                      cursor: 'pointer',
-                      fontWeight: activeTab === 'orders' ? 'bold' : 'normal'
-                    }}
-                  >
-                    Orders
-                  </button>
-                </li>
-                
-                <li style={{ marginBottom: '10px' }}>
-                  <button 
-                    onClick={() => setActiveTab('statistics')}
-                    style={{ 
-                      display: 'block',
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '12px 15px',
-                      borderRadius: '4px',
-                      border: 'none',
-                      backgroundColor: activeTab === 'statistics' ? 'var(--mineral-green)' : 'transparent',
-                      color: activeTab === 'statistics' ? 'white' : 'var(--black)',
-                      cursor: 'pointer',
-                      fontWeight: activeTab === 'statistics' ? 'bold' : 'normal'
-                    }}
-                  >
-                    Statistics
-                  </button>
-                </li>
-                
-                <li style={{ marginBottom: '10px' }}>
-                  <button 
-                    onClick={() => setActiveTab('settings')}
-                    style={{ 
-                      display: 'block',
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '12px 15px',
-                      borderRadius: '4px',
-                      border: 'none',
-                      backgroundColor: activeTab === 'settings' ? 'var(--mineral-green)' : 'transparent',
-                      color: activeTab === 'settings' ? 'white' : 'var(--black)',
-                      cursor: 'pointer',
-                      fontWeight: activeTab === 'settings' ? 'bold' : 'normal'
-                    }}
-                  >
-                    Settings
-                  </button>
-                </li>
-              </ul>
+            <nav className="dashboard-nav" style={{ 
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '10px'
+            }}>
+              <button 
+                onClick={() => setActiveTab('products')}
+                style={{ 
+                  padding: '12px 15px',
+                  borderRadius: '4px',
+                  border: 'none',
+                  backgroundColor: activeTab === 'products' ? 'var(--mineral-green)' : 'transparent',
+                  color: activeTab === 'products' ? 'white' : 'var(--black)',
+                  cursor: 'pointer',
+                  fontWeight: activeTab === 'products' ? 'bold' : 'normal',
+                  textAlign: 'center',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Produtos
+              </button>
+              
+              <button 
+                onClick={() => setActiveTab('orders')}
+                style={{ 
+                  padding: '12px 15px',
+                  borderRadius: '4px',
+                  border: 'none',
+                  backgroundColor: activeTab === 'orders' ? 'var(--mineral-green)' : 'transparent',
+                  color: activeTab === 'orders' ? 'white' : 'var(--black)',
+                  cursor: 'pointer',
+                  fontWeight: activeTab === 'orders' ? 'bold' : 'normal',
+                  textAlign: 'center',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Pedidos
+              </button>
+              
+              <button 
+                onClick={() => setActiveTab('statistics')}
+                style={{ 
+                  padding: '12px 15px',
+                  borderRadius: '4px',
+                  border: 'none',
+                  backgroundColor: activeTab === 'statistics' ? 'var(--mineral-green)' : 'transparent',
+                  color: activeTab === 'statistics' ? 'white' : 'var(--black)',
+                  cursor: 'pointer',
+                  fontWeight: activeTab === 'statistics' ? 'bold' : 'normal',
+                  textAlign: 'center',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Estatísticas
+              </button>
+              
+              <button 
+                onClick={() => setActiveTab('settings')}
+                style={{ 
+                  padding: '12px 15px',
+                  borderRadius: '4px',
+                  border: 'none',
+                  backgroundColor: activeTab === 'settings' ? 'var(--mineral-green)' : 'transparent',
+                  color: activeTab === 'settings' ? 'white' : 'var(--black)',
+                  cursor: 'pointer',
+                  fontWeight: activeTab === 'settings' ? 'bold' : 'normal',
+                  textAlign: 'center',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Configurações
+              </button>
             </nav>
           </div>
           
@@ -143,15 +133,16 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                   alignItems: 'center',
                   marginBottom: '30px'
                 }}>
-                  <h2>My Products</h2>
-                  <button className="button">Add New Product</button>
+                  <h2>Meus Produtos</h2>
+                  <button className="button">Adicionar novo produto</button>
                 </div>
                 
                 <div className="products-list" style={{ 
                   backgroundColor: 'white',
                   borderRadius: '8px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  overflowX: 'auto'
                 }}>
                   <div className="products-header" style={{ 
                     display: 'grid',
@@ -159,14 +150,15 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     gap: '15px',
                     padding: '15px 20px',
                     backgroundColor: 'var(--light-gray)',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    minWidth: '700px'
                   }}>
-                    <div>Image</div>
-                    <div>Product</div>
-                    <div>Price</div>
-                    <div>Stock</div>
+                    <div>Imagem</div>
+                    <div>Produto</div>
+                    <div>Preço</div>
+                    <div>Estoque</div>
                     <div>Status</div>
-                    <div>Actions</div>
+                    <div>Ações</div>
                   </div>
                   
                   {[1, 2, 3, 4].map(productId => (
@@ -192,16 +184,16 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                       </div>
                       
                       <div className="product-name">
-                        <p style={{ fontWeight: '500', marginBottom: '5px' }}>Product Name</p>
-                        <p style={{ fontSize: '0.9rem', color: 'var(--dark-gray)' }}>Category</p>
+                        <p style={{ fontWeight: '500', marginBottom: '5px' }}>Nome do Produto</p>
+                        <p style={{ fontSize: '0.9rem', color: 'var(--dark-gray)' }}>Categoria</p>
                       </div>
                       
                       <div className="product-price">
-                        $XX.XX
+                        R$XX.XX
                       </div>
                       
                       <div className="product-stock">
-                        XX in stock
+                        XX em estoque
                       </div>
                       
                       <div className="product-status">
@@ -213,12 +205,11 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                           borderRadius: '20px',
                           fontSize: '0.9rem'
                         }}>
-                          Active
+                          Ativo
                         </span>
                       </div>
                       
                       <div className="product-actions" style={{ 
-                        display: 'flex',
                         gap: '10px'
                       }}>
                         <button style={{ 
@@ -227,7 +218,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                           color: 'var(--mineral-green)',
                           cursor: 'pointer'
                         }}>
-                          Edit
+                          Editar
                         </button>
                         
                         <button style={{ 
@@ -236,7 +227,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                           color: '#d9534f',
                           cursor: 'pointer'
                         }}>
-                          Delete
+                          Deletar
                         </button>
                       </div>
                     </div>
@@ -247,7 +238,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
             
             {activeTab === 'orders' && (
               <div className="orders-tab">
-                <h2 style={{ marginBottom: '30px' }}>Recent Orders</h2>
+                <h2 style={{ marginBottom: '30px' }}>Pedidos recentes</h2>
                 
                 <div className="orders-list" style={{ 
                   backgroundColor: 'white',
@@ -284,15 +275,15 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                       </div>
                       
                       <div className="order-customer">
-                        Customer Name
+                        Nome do Cliente
                       </div>
                       
                       <div className="order-date">
-                        May 20, 2025
+                        20 de Maio de 2025
                       </div>
                       
                       <div className="order-total">
-                        $XX.XX
+                        R$XX.XX
                       </div>
                       
                       <div className="order-status">
@@ -304,7 +295,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                           borderRadius: '20px',
                           fontSize: '0.9rem'
                         }}>
-                          Shipped
+                          Enviado
                         </span>
                       </div>
                     </div>
@@ -315,11 +306,11 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
             
             {activeTab === 'statistics' && (
               <div className="statistics-tab">
-                <h2 style={{ marginBottom: '30px' }}>Performance Statistics</h2>
+                <h2 style={{ marginBottom: '30px' }}>Estatísticas</h2>
                 
                 <div className="stats-cards" style={{ 
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
                   gap: '20px',
                   marginBottom: '40px'
                 }}>
@@ -330,8 +321,8 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     padding: '20px',
                     textAlign: 'center'
                   }}>
-                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Total Sales</h3>
-                    <p style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--mineral-green)' }}>$1,234</p>
+                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Total</h3>
+                    <p style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--mineral-green)' }}>R$1.234</p>
                   </div>
                   
                   <div className="stat-card" style={{ 
@@ -341,7 +332,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     padding: '20px',
                     textAlign: 'center'
                   }}>
-                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Orders</h3>
+                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Pedidos</h3>
                     <p style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--mineral-green)' }}>42</p>
                   </div>
                   
@@ -352,7 +343,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     padding: '20px',
                     textAlign: 'center'
                   }}>
-                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Products</h3>
+                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Produtos</h3>
                     <p style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--mineral-green)' }}>12</p>
                   </div>
                   
@@ -363,7 +354,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     padding: '20px',
                     textAlign: 'center'
                   }}>
-                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Avg. Rating</h3>
+                    <h3 style={{ color: 'var(--dark-gray)', marginBottom: '10px', fontSize: '1rem' }}>Média de Avaliação</h3>
                     <p style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--mineral-green)' }}>4.8</p>
                   </div>
                 </div>
@@ -375,7 +366,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                   padding: '20px',
                   marginBottom: '30px'
                 }}>
-                  <h3 style={{ marginBottom: '20px' }}>Sales Over Time</h3>
+                  <h3 style={{ marginBottom: '20px' }}>Vendas no Período</h3>
                   
                   <div className="chart-placeholder" style={{ 
                     height: '300px',
@@ -385,7 +376,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     alignItems: 'center',
                     color: 'var(--dark-gray)'
                   }}>
-                    Sales Chart Visualization
+                    Gráfico
                   </div>
                 </div>
               </div>
@@ -393,7 +384,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
             
             {activeTab === 'settings' && (
               <div className="settings-tab">
-                <h2 style={{ marginBottom: '30px' }}>Account Settings</h2>
+                <h2 style={{ marginBottom: '30px' }}>Configurações de Conta</h2>
                 
                 <div className="settings-form" style={{ 
                   backgroundColor: 'white',
@@ -402,13 +393,13 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                   padding: '30px',
                   marginBottom: '30px'
                 }}>
-                  <h3 style={{ marginBottom: '20px' }}>Personal Information</h3>
+                  <h3 style={{ marginBottom: '20px' }}>Informações Pessoais</h3>
                   
                   <form style={{ display: 'grid', gap: '20px' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                       <div className="form-group">
                         <label htmlFor="firstName" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                          First Name
+                          Primeiro Nome
                         </label>
                         <input 
                           type="text" 
@@ -425,7 +416,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                       
                       <div className="form-group">
                         <label htmlFor="lastName" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                          Last Name
+                          Sobrenome
                         </label>
                         <input 
                           type="text" 
@@ -448,7 +439,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                       <input 
                         type="email" 
                         id="email" 
-                        defaultValue="maria@example.com"
+                        defaultValue="maria@maria.com"
                         style={{ 
                           width: '100%',
                           padding: '12px',
@@ -460,12 +451,12 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     
                     <div className="form-group">
                       <label htmlFor="specialty" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                        Specialty
+                        Especialidade
                       </label>
                       <input 
                         type="text" 
                         id="specialty" 
-                        defaultValue="Handwoven Textiles"
+                        defaultValue="Tecelagem Manual de Tecidos"
                         style={{ 
                           width: '100%',
                           padding: '12px',
@@ -477,12 +468,12 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     
                     <div className="form-group">
                       <label htmlFor="bio" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                        Bio
+                        Biografia
                       </label>
                       <textarea 
                         id="bio" 
                         rows={4}
-                        defaultValue="Maria has been weaving traditional Brazilian textiles for over 20 years, using techniques passed down through generations in her family."
+                        defaultValue="Maria tece peças tradicionais brasileiras há mais de 20 anos, usando técnicas transmitidas por gerações em sua família."
                         style={{ 
                           width: '100%',
                           padding: '12px',
@@ -494,7 +485,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     </div>
                     
                     <button type="button" className="button" style={{ justifySelf: 'start' }}>
-                      Save Changes
+                      Salvar
                     </button>
                   </form>
                 </div>
@@ -505,17 +496,17 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                   padding: '30px'
                 }}>
-                  <h3 style={{ marginBottom: '20px' }}>Change Password</h3>
+                  <h3 style={{ marginBottom: '20px' }}>Mudar Senha</h3>
                   
                   <form style={{ display: 'grid', gap: '20px' }}>
                     <div className="form-group">
                       <label htmlFor="currentPassword" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                        Current Password
+                        Senha Atual
                       </label>
                       <input 
                         type="password" 
                         id="currentPassword" 
-                        placeholder="Enter your current password"
+                        placeholder="Digite sua senha atual"
                         style={{ 
                           width: '100%',
                           padding: '12px',
@@ -527,12 +518,12 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     
                     <div className="form-group">
                       <label htmlFor="newPassword" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                        New Password
+                        Nova Senha
                       </label>
                       <input 
                         type="password" 
                         id="newPassword" 
-                        placeholder="Enter your new password"
+                        placeholder="Digite sua nova senha"
                         style={{ 
                           width: '100%',
                           padding: '12px',
@@ -544,7 +535,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     
                     <div className="form-group">
                       <label htmlFor="confirmNewPassword" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                        Confirm New Password
+                        Repita a Senha
                       </label>
                       <input 
                         type="password" 

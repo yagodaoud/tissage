@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
@@ -6,16 +6,44 @@ interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('home');
- 
+  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
+
+  useEffect(() => {
+    const controlHeader = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Show header when at top of page
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      }
+      // Hide when scrolling down, show when scrolling up
+      else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', controlHeader);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', controlHeader);
+    };
+  }, [lastScrollY]);
+
   return (
-    <header className="tissage-header">
+    <header className={`tissage-header ${isVisible ? 'header-visible' : 'header-hidden'}`}>
       {/* Logo Row */}
       <div className="logo-row">
         <div className="logo">
-        <img src="/resources/tissage-logo.png" alt="Tissage Logo" className="tissage-logo" />
+          <img src="/resources/tissage-logo.png" alt="Tissage Logo" className="tissage-logo" />
+        </div>
       </div>
-      </div>
-      
+     
       {/* Navigation Row */}
       <div className="header-container">
         <div className="header-left">
