@@ -1,11 +1,66 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
+  const determineRedirectPath = (email: string) => {
+    // Regex patterns to check what's between @ and .
+    const adminPattern = /@admin\./i;
+    const artesaoPattern = /@artesao\./i;
+    const clientePattern = /@cliente\./i;
+    
+    if (adminPattern.test(email)) {
+      return '/admin';
+    } else if (artesaoPattern.test(email)) {
+      return '/artesao/1';
+    } else if (clientePattern.test(email)) {
+      return '/';
+    } else {
+      // Default to home for any other email pattern
+      return '/';
+    }
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    try {
+      // Get form data
+      const formData = new FormData(e.target);
+      const email = formData.get('email');
+      
+      // Your login validation and API calls here
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Determine redirect path based on email
+      const redirectPath = determineRedirectPath(email?.toString() || '');
+      
+      // Navigate to the appropriate path
+      navigate(redirectPath, { replace: true });
+      
+      // Guarantee scroll to top
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      });
+      
+    } catch (error) {
+      console.error('Login failed:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleMouseOver = (e: any) => {
+    const target = e.target;
+    target.style.backgroundColor = 'var(--light-gray)';
+  };
+
+  const handleMouseOut = (e: any) => {
+    const target = e.target;
+    target.style.backgroundColor = 'white';
   };
 
   return (
@@ -31,288 +86,172 @@ const LoginPage = () => {
             marginBottom: '10px',
             fontFamily: "'Montserrat', sans-serif"
           }}>
-            {isLogin ? 'Entrar' : 'Criar uma Conta'}
+            Entrar
           </h1>
           <p style={{ color: 'var(--dark-gray)' }}>
-            {isLogin 
-              ? 'Bem-vindo de volta! Insira seus dados.' 
-              : 'Junte-se à nossa comunidade de artesãos e clientes.'}
+            Bem-vindo de volta! Insira seus dados.
           </p>
         </div>
 
-        <div className="auth-tabs" style={{ 
-          display: 'flex',
-          marginBottom: '30px',
-          borderBottom: '1px solid var(--medium-gray)'
-        }}>
-          <button 
-            className={isLogin ? 'active' : ''}
-            onClick={() => setIsLogin(true)}
-            style={{ 
-              flex: 1,
-              padding: '10px',
-              border: 'none',
-              background: 'none',
-              borderBottom: isLogin ? '3px solid var(--mineral-green)' : 'none',
-              color: isLogin ? 'var(--mineral-green)' : 'var(--dark-gray)',
-              fontWeight: isLogin ? 'bold' : 'normal',
-              cursor: 'pointer'
-            }}
-          >
-            Entrar
-          </button>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="form-group" style={{ marginBottom: '20px' }}>
+            <label htmlFor="email" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
+              E-mail
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email"
+              placeholder="Digite seu e-mail"
+              required
+              style={{ 
+                width: '100%',
+                padding: '12px',
+                border: '1px solid var(--medium-gray)',
+                borderRadius: '4px'
+              }}
+            />
+          </div>
 
-          <button 
-            className={!isLogin ? 'active' : ''}
-            onClick={() => setIsLogin(false)}
-            style={{ 
-              flex: 1,
-              padding: '10px',
-              border: 'none',
-              background: 'none',
-              borderBottom: !isLogin ? '3px solid var(--mineral-green)' : 'none',
-              color: !isLogin ? 'var(--mineral-green)' : 'var(--dark-gray)',
-              fontWeight: !isLogin ? 'bold' : 'normal',
-              cursor: 'pointer'
-            }}
-          >
-            Cadastrar
-          </button>
-        </div>
-
-        {isLogin ? (
-          <form className="login-form">
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <label htmlFor="email" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                E-mail
-              </label>
-              <input 
-                type="email" 
-                id="email" 
-                placeholder="Digite seu e-mail"
-                style={{ 
-                  width: '100%',
-                  padding: '12px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px'
-                }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
-                <label htmlFor="password" style={{ fontWeight: '500' }}>
-                  Senha
-                </label>
-                <Link to="/forgot-password" style={{ 
-                  color: 'var(--mineral-green)',
-                  fontSize: '0.9rem'
-                }}>
-                  Esqueceu a senha?
-                </Link>
-              </div>
-              <input 
-                type="password" 
-                id="password" 
-                placeholder="Digite sua senha"
-                style={{ 
-                  width: '100%',
-                  padding: '12px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px'
-                }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                <input 
-                  type="checkbox" 
-                  style={{ marginRight: '10px' }}
-                />
-                <span>Lembrar de mim</span>
-              </label>
-            </div>
-
-            <Link to="/" className="button" style={{ 
-              display: 'block',
-              width: '100%',
-              padding: '12px',
-              textAlign: 'center',
-              marginBottom: '20px',
-              backgroundColor: 'var(--mineral-green)',
-              color: 'white',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              fontWeight: 'bold'
-            }}>
-              Entrar
-            </Link>
-
-            <div className="auth-options" style={{ textAlign: 'center' }}>
-              <p style={{ marginBottom: '20px', color: 'var(--dark-gray)' }}>
-                Ou continue com
-              </p>
-
-              <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
-                <button style={{ 
-                  width: '50px',
-                  height: '50px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px',
-                  background: 'none',
-                  cursor: 'pointer',
-                  fontSize: '1.2rem'
-                }}>
-                  G
-                </button>
-
-                <button style={{ 
-                  width: '50px',
-                  height: '50px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px',
-                  background: 'none',
-                  cursor: 'pointer',
-                  fontSize: '1.2rem'
-                }}>
-                  f
-                </button>
-
-                <button style={{ 
-                  width: '50px',
-                  height: '50px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px',
-                  background: 'none',
-                  cursor: 'pointer',
-                  fontSize: '1.2rem'
-                }}>
-                  in
-                </button>
-              </div>
-            </div>
-          </form>
-        ) : (
-          <form className="register-form">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
-              <div className="form-group">
-                <label htmlFor="firstName" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                  Nome
-                </label>
-                <input 
-                  type="text" 
-                  id="firstName" 
-                  placeholder="Digite seu nome"
-                  style={{ 
-                    width: '100%',
-                    padding: '12px',
-                    border: '1px solid var(--medium-gray)',
-                    borderRadius: '4px'
-                  }}
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="lastName" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                  Sobrenome
-                </label>
-                <input 
-                  type="text" 
-                  id="lastName" 
-                  placeholder="Digite seu sobrenome"
-                  style={{ 
-                    width: '100%',
-                    padding: '12px',
-                    border: '1px solid var(--medium-gray)',
-                    borderRadius: '4px'
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <label htmlFor="registerEmail" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                E-mail
-              </label>
-              <input 
-                type="email" 
-                id="registerEmail" 
-                placeholder="Digite seu e-mail"
-                style={{ 
-                  width: '100%',
-                  padding: '12px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px'
-                }}
-              />
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <label htmlFor="registerPassword" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
+          <div className="form-group" style={{ marginBottom: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px' }}>
+              <label htmlFor="password" style={{ fontWeight: '500' }}>
                 Senha
               </label>
+              <Link to="/forgot-password" style={{ 
+                color: 'var(--mineral-green)',
+                fontSize: '0.9rem'
+              }}>
+                Esqueceu a senha?
+              </Link>
+            </div>
+            <input 
+              type="password" 
+              id="password" 
+              name="password"
+              placeholder="Digite sua senha"
+              required
+              style={{ 
+                width: '100%',
+                padding: '12px',
+                border: '1px solid var(--medium-gray)',
+                borderRadius: '4px'
+              }}
+            />
+          </div>
+
+          <div className="form-group" style={{ marginBottom: '30px', display: 'flex', alignItems: 'center' }}>
+            <label style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
               <input 
-                type="password" 
-                id="registerPassword" 
-                placeholder="Crie uma senha"
+                type="checkbox" 
+                name="rememberMe"
                 style={{ 
-                  width: '100%',
-                  padding: '12px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px'
+                  marginRight: '10px',
+                  width: '16px',
+                  height: '16px',
+                  accentColor: 'var(--mineral-green)',
+                  cursor: 'pointer'
                 }}
               />
-              <p style={{ fontSize: '0.8rem', color: 'var(--dark-gray)', marginTop: '5px' }}>
-                A senha deve ter pelo menos 8 caracteres
-              </p>
-            </div>
+              <span style={{ transform: 'translateY(-6px)' }}>
+                Lembrar de mim
+              </span>
+            </label>
+          </div>
 
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <label htmlFor="accountType" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
-                Tipo de Conta
-              </label>
-              <select 
-                id="accountType"
-                style={{ 
-                  width: '100%',
-                  padding: '12px',
-                  border: '1px solid var(--medium-gray)',
-                  borderRadius: '4px',
-                  backgroundColor: 'white'
-                }}
-              >
-                <option value="customer">Cliente</option>
-                <option value="artisan">Artesão</option>
-              </select>
-            </div>
-
-            <div className="form-group" style={{ marginBottom: '20px' }}>
-              <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                <input 
-                  type="checkbox" 
-                  style={{ marginRight: '10px' }}
-                />
-                <span>Eu concordo com os <Link to="/terms" style={{ color: 'var(--mineral-green)' }}>Termos de Serviço</Link> e a <Link to="/privacy" style={{ color: 'var(--mineral-green)' }}>Política de Privacidade</Link></span>
-              </label>
-            </div>
-
-            <Link to="/" className="button" style={{ 
+          <button 
+            type="submit"
+            disabled={isLoading}
+            style={{ 
               display: 'block',
               width: '100%',
               padding: '12px',
               textAlign: 'center',
-              marginBottom: '20px',
-              backgroundColor: 'var(--mineral-green)',
+              marginBottom: '30px',
+              backgroundColor: isLoading ? 'var(--medium-gray)' : 'var(--mineral-green)',
               color: 'white',
+              border: 'none',
               borderRadius: '4px',
-              textDecoration: 'none',
-              fontWeight: 'bold'
-            }}>
-              Criar Conta
-            </Link>
-          </form>
-        )}
+              cursor: isLoading ? 'not-allowed' : 'pointer',
+              fontSize: '16px',
+              fontWeight: '500'
+            }}
+          >
+            {isLoading ? 'Entrando...' : 'Entrar'}
+          </button>
+
+          <div className="auth-options" style={{ textAlign: 'center', marginBottom: '30px' }}>
+            <p style={{ marginBottom: '20px', color: 'var(--dark-gray)' }}>
+              Ou continue com
+            </p>
+
+            <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+              <button 
+                type="button"
+                style={{ 
+                  width: '50px',
+                  height: '50px',
+                  border: '1px solid var(--medium-gray)',
+                  borderRadius: '4px',
+                  background: 'white',
+                  cursor: 'pointer',
+                  fontSize: '1.2rem',
+                  color: '#4285f4',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseOver={handleMouseOver}
+                onMouseOut={handleMouseOut}
+              >
+                G
+              </button>
+
+              <button 
+                type="button"
+                style={{ 
+                  width: '50px',
+                  height: '50px',
+                  border: '1px solid var(--medium-gray)',
+                  borderRadius: '4px',
+                  background: 'white',
+                  cursor: 'pointer',
+                  fontSize: '1.2rem',
+                  color: '#1877f2',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseOver={handleMouseOver}
+                onMouseOut={handleMouseOut}
+              >
+                f
+              </button>
+
+              <button 
+                type="button"
+                style={{ 
+                  width: '50px',
+                  height: '50px',
+                  border: '1px solid var(--medium-gray)',
+                  borderRadius: '4px',
+                  background: 'white',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  color: '#0077b5',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseOver={handleMouseOver}
+                onMouseOut={handleMouseOut}
+              >
+                in
+              </button>
+            </div>
+          </div>
+
+          <p style={{ textAlign: 'center', color: 'var(--dark-gray)' }}>
+            Não tem uma conta? <Link to="/register" style={{ color: 'var(--mineral-green)', fontWeight: '500' }}>Criar</Link>
+          </p>
+        </form>
       </div>
     </div>
   );

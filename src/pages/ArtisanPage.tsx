@@ -118,7 +118,7 @@ const ArtisanPage = () => {
                 }}>
                   {[1, 2, 3, 4].map(productId => (
                     <div key={productId} className="product-card">
-                      <Link to={`/products/${productId}`}>
+                      <Link to={`/produtos/${productId}`}>
                         <div className="product-image" style={{
                           height: '200px',
                           backgroundColor: '#f0f0f0',

@@ -359,7 +359,7 @@ const ProductListPage = () => {
         }}>
           {products.map(product => (
             <div key={product.id} className="product-card">
-              <Link to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+              <Link to={`/produtos/${product.id}`} style={{ textDecoration: 'none' }}>
                 <div className="product-image">
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>

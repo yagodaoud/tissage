@@ -50,8 +50,9 @@ const Header: React.FC<HeaderProps> = () => {
           <div className="logo-small">
             <img src="/resources/s-logo.png" alt="S Logo" className="s-logo-img" />
           </div>
-          <Link to="/register">
-            <button className="partner-button">Seja Parceiro</button>
+          <Link to="/login"
+          onClick={() => setActiveTab('')}>
+            <button className="partner-button">Login</button>
           </Link>
         </div>
        
@@ -62,7 +63,7 @@ const Header: React.FC<HeaderProps> = () => {
               className={activeTab === 'menu' ? 'active' : ''}
               onClick={() => setActiveTab('menu')}
             >
-              Menu
+              Página Inicial
             </Link>
             <Link
               to="/artesaos"

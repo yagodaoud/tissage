@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [accountType, setAccountType] = useState('customer');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    
+    console.log('Account Type:', accountType);
+    
+    if (accountType === 'artisan') {
+      navigate('/artesao/1');
+    } else {
+      navigate('/');
+    }
+  };
 
   return (
     <div className="auth-page" style={{ 
@@ -74,7 +87,7 @@ const RegisterPage = () => {
           </button>
         </div>
         
-        <form className="register-form">
+        <form className="register-form" onSubmit={handleSubmit}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '20px' }}>
             <div className="form-group">
               <label htmlFor="firstName" style={{ display: 'block', marginBottom: '5px', fontWeight: '500' }}>
@@ -232,24 +245,49 @@ const RegisterPage = () => {
           )}
           
           <div className="form-group" style={{ marginBottom: '20px' }}>
-            <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-              <input 
-                type="checkbox" 
-                style={{ marginRight: '10px' }}
-              />
-              <span>Concordo com os <Link to="/terms" style={{ color: 'var(--mineral-green)' }}>Termos de Serviço</Link> e a <Link to="/privacy" style={{ color: 'var(--mineral-green)' }}>Política de Privacidade</Link></span>
-            </label>
-          </div>
+          <label style={{ 
+            display: 'flex', 
+            alignItems: 'flex-start', 
+            cursor: 'pointer',
+            gap: '12px',
+            lineHeight: '1.4'
+          }}>
+            <span style={{ flex: 1 }}>
+              Concordo com os <Link to="/terms" style={{ color: 'var(--mineral-green)', textDecoration: 'underline' }}>Termos de Serviço</Link> e a <Link to="/privacy" style={{ color: 'var(--mineral-green)', textDecoration: 'underline' }}>Política de Privacidade</Link>
+            </span>
+            <input 
+              type="checkbox" 
+              style={{ 
+                marginTop: '2px',
+                width: '18px',
+                height: '18px',
+                accentColor: 'var(--mineral-green)',
+                cursor: 'pointer'
+              }}
+            />
+          </label>
+        </div>
           
-          <Link to="/" className="button" style={{ 
+        <button 
+          type="submit"
+          className="button" 
+          style={{ 
             display: 'block',
             width: '100%',
             padding: '12px',
             textAlign: 'center',
-            marginBottom: '20px'
-          }}>
-            Criar Conta
-          </Link>
+            marginBottom: '20px',
+            backgroundColor: 'var(--mineral-green)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px',
+            fontWeight: '500'
+          }}
+        >
+          Criar Conta
+        </button>
           
           <p style={{ textAlign: 'center' }}>
             Já tem uma conta? <Link to="/login" style={{ color: 'var(--mineral-green)' }}>Entrar</Link>

@@ -1,11 +1,87 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 interface ArtisanDashboardPageProps {}
+
+interface ProductStatuses {
+  [key: number]: boolean;
+}
+
+interface StatusStyles {
+  [key: string]: {
+    backgroundColor: string;
+    color: string;
+    borderColor: string;
+  };
+}
 
 const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('products');
   
+  const [productStatuses, setProductStatuses] = useState<ProductStatuses>({
+  1: true,
+  2: true,
+  3: false,
+  4: true
+});
+
+  const toggleProductStatus = (productId: number) => {
+    setProductStatuses(prev => ({
+      ...prev,
+      [productId]: !prev[productId]
+    }));
+  };
+
+    const [orderStatuses, setOrderStatuses] = useState({
+    1: 'Embalado',
+    2: 'Enviado',
+    3: 'Entregue',
+    4: 'Enviado'
+  });
+
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+
+  const statusOptions = ['Embalado', 'Enviado', 'Entregue'];
+
+  const getStatusStyle = (status: string) => {
+    const styles: StatusStyles = {
+      'Embalado': {
+        backgroundColor: '#fff3cd',
+        color: '#856404',
+        borderColor: '#ffeaa7'
+      },
+      'Enviado': {
+        backgroundColor: '#d1ecf1',
+        color: '#0c5460',
+        borderColor: '#bee5eb'
+      },
+      'Entregue': {
+        backgroundColor: '#d4edda',
+        color: '#155724',
+        borderColor: '#c3e6cb'
+      }
+    };
+    return styles[status] || styles['Embalado'];
+  }
+
+    const handleStatusChange = (orderId: number, newStatus: string) => {
+    setOrderStatuses(prev => ({
+      ...prev,
+      [orderId]: newStatus
+    }));
+    setOpenDropdown(null); // Close dropdown after selection
+  };
+
+  // Toggle dropdown
+  const toggleDropdown = (orderId: number) => {
+    setOpenDropdown(openDropdown === orderId ? null : orderId);
+  };
+
+  // Close dropdown when clicking outside
+  const handleClickOutside = () => {
+    setOpenDropdown(null);
+  };
+
+
   return (
     <div className="artisan-dashboard-page">
       <div className="container" style={{ padding: '40px 0' }}>
@@ -161,77 +237,94 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     <div>Ações</div>
                   </div>
                   
-                  {[1, 2, 3, 4].map(productId => (
-                    <div key={productId} className="product-row" style={{ 
-                      display: 'grid',
-                      gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 100px',
-                      gap: '15px',
-                      padding: '15px 20px',
-                      borderBottom: '1px solid var(--light-gray)',
-                      alignItems: 'center'
-                    }}>
-                      <div className="product-image" style={{ 
-                        width: '60px',
-                        height: '60px',
-                        backgroundColor: '#f0f0f0',
-                        display: 'flex',
-                        justifyContent: 'center',
+                  {[1, 2, 3, 4].map(productId => {
+                    const isActive = productStatuses[productId];
+                    
+                    return (
+                      <div key={productId} className="product-row" style={{
+                        display: 'grid',
+                        gridTemplateColumns: '80px 2fr 1fr 1fr 1fr 100px',
+                        gap: '15px',
+                        padding: '15px 20px',
+                        borderBottom: '1px solid #e0e0e0',
                         alignItems: 'center',
-                        color: '#999',
-                        borderRadius: '4px'
+                        opacity: isActive ? 1 : 0.6 // Visual feedback for inactive products
                       }}>
-                        Img
-                      </div>
-                      
-                      <div className="product-name">
-                        <p style={{ fontWeight: '500', marginBottom: '5px' }}>Nome do Produto</p>
-                        <p style={{ fontSize: '0.9rem', color: 'var(--dark-gray)' }}>Categoria</p>
-                      </div>
-                      
-                      <div className="product-price">
-                        R$XX.XX
-                      </div>
-                      
-                      <div className="product-stock">
-                        XX em estoque
-                      </div>
-                      
-                      <div className="product-status">
-                        <span style={{ 
-                          display: 'inline-block',
-                          padding: '5px 10px',
-                          backgroundColor: 'var(--strawberry-cream)',
-                          color: 'var(--mineral-green)',
-                          borderRadius: '20px',
-                          fontSize: '0.9rem'
+                        <div className="product-image" style={{
+                          width: '60px',
+                          height: '60px',
+                          backgroundColor: '#f0f0f0',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          color: '#999',
+                          borderRadius: '4px'
                         }}>
-                          Ativo
-                        </span>
-                      </div>
+                          Img
+                        </div>
                       
-                      <div className="product-actions" style={{ 
-                        gap: '10px'
-                      }}>
-                        <button style={{ 
-                          border: 'none',
-                          background: 'none',
-                          color: 'var(--mineral-green)',
-                          cursor: 'pointer'
+                        <div className="product-name">
+                          <p style={{ fontWeight: '500', marginBottom: '5px' }}>Nome do Produto {productId}</p>
+                          <p style={{ fontSize: '0.9rem', color: '#666' }}>Categoria</p>
+                        </div>
+                      
+                        <div className="product-price">
+                          R$XX.XX
+                        </div>
+                      
+                        <div className="product-stock">
+                          XX em estoque
+                        </div>
+                      
+                        <div className="product-status">
+                          <span 
+                            onClick={() => toggleProductStatus(productId)}
+                            style={{
+                              display: 'inline-block',
+                              padding: '5px 10px',
+                              backgroundColor: isActive ? '#e8f5e8' : '#f5e8e8',
+                              color: isActive ? '#2d5f2d' : '#d9534f',
+                              borderRadius: '20px',
+                              fontSize: '0.9rem',
+                              cursor: 'pointer',
+                              transition: 'all 0.3s ease',
+                              userSelect: 'none'
+                            }}
+                            onMouseEnter={(e) => {
+                              (e.target as HTMLElement).style.transform = 'scale(1.05)';
+                            }}
+                            onMouseLeave={(e) => {
+                              (e.target as HTMLElement).style.transform = 'scale(1)';
+                            }}
+                          >
+                            {isActive ? 'Ativo' : 'Inativo'}
+                          </span>
+                        </div>
+                      
+                        <div className="product-actions" style={{
+                          gap: '10px',
                         }}>
-                          Editar
-                        </button>
+                          <button style={{
+                            border: 'none',
+                            background: 'none',
+                            color: '#2d5f2d',
+                            cursor: 'pointer'
+                          }}>
+                            Editar
+                          </button>
                         
-                        <button style={{ 
-                          border: 'none',
-                          background: 'none',
-                          color: '#d9534f',
-                          cursor: 'pointer'
-                        }}>
-                          Deletar
-                        </button>
+                          <button style={{
+                            border: 'none',
+                            background: 'none',
+                            color: '#d9534f',
+                            cursor: 'pointer'
+                          }}>
+                            Deletar
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -239,14 +332,15 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
             {activeTab === 'orders' && (
               <div className="orders-tab">
                 <h2 style={{ marginBottom: '30px' }}>Pedidos recentes</h2>
-                
-                <div className="orders-list" style={{ 
+              
+                <div className="orders-list" style={{
                   backgroundColor: 'white',
                   borderRadius: '8px',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                  overflow: 'hidden'
-                }}>
-                  <div className="orders-header" style={{ 
+                  overflow: 'hidden',
+                  position: 'relative'
+                }} onClick={handleClickOutside}>
+                  <div className="orders-header" style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 2fr 1fr 1fr 1fr',
                     gap: '15px',
@@ -260,47 +354,165 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     <div>Total</div>
                     <div>Status</div>
                   </div>
-                  
-                  {[1, 2, 3, 4].map(orderId => (
-                    <div key={orderId} className="order-row" style={{ 
-                      display: 'grid',
-                      gridTemplateColumns: '1fr 2fr 1fr 1fr 1fr',
-                      gap: '15px',
-                      padding: '15px 20px',
-                      borderBottom: '1px solid var(--light-gray)',
-                      alignItems: 'center'
-                    }}>
-                      <div className="order-id">
-                        #{10000 + orderId}
-                      </div>
+                
+                  {[1, 2, 3, 4].map(orderId => {
+                    const currentStatus = orderStatuses[orderId as 1 | 2 | 3 | 4];
+                    const statusStyle = getStatusStyle(currentStatus);
+                    const isDropdownOpen = openDropdown === orderId;
+                    
+                    return (
+                      <div key={orderId} className="order-row" style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 2fr 1fr 1fr 1fr',
+                        gap: '15px',
+                        padding: '15px 20px',
+                        borderBottom: '1px solid var(--light-gray)',
+                        alignItems: 'center'
+                      }}>
+                        <div className="order-id">
+                          #{10000 + orderId}
+                        </div>
                       
-                      <div className="order-customer">
-                        Nome do Cliente
-                      </div>
+                        <div className="order-customer">
+                          Nome do Cliente
+                        </div>
                       
-                      <div className="order-date">
-                        20 de Maio de 2025
-                      </div>
+                        <div className="order-date">
+                          20 de Maio de 2025
+                        </div>
                       
-                      <div className="order-total">
-                        R$XX.XX
-                      </div>
+                        <div className="order-total">
+                          R$XX.XX
+                        </div>
                       
-                      <div className="order-status">
-                        <span style={{ 
-                          display: 'inline-block',
-                          padding: '5px 10px',
-                          backgroundColor: 'var(--strawberry-cream)',
-                          color: 'var(--mineral-green)',
-                          borderRadius: '20px',
-                          fontSize: '0.9rem'
-                        }}>
-                          Enviado
-                        </span>
+                        <div className="order-status" style={{ position: 'relative' }}>
+                          <span 
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleDropdown(orderId);
+                            }}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '5px',
+                              padding: '8px 12px',
+                              backgroundColor: statusStyle.backgroundColor,
+                              color: statusStyle.color,
+                              border: `1px solid ${statusStyle.borderColor}`,
+                              borderRadius: '20px',
+                              fontSize: '0.9rem',
+                              cursor: 'pointer',
+                              transition: 'all 0.2s ease',
+                              userSelect: 'none',
+                              minWidth: '100px',
+                              justifyContent: 'center'
+                            }}
+                            onMouseEnter={(e) => {
+                              (e.target as HTMLElement).style.transform = 'translateY(-1px)';
+                              (e.target as HTMLElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                              (e.target as HTMLElement).style.transform = 'translateY(0)';
+                              (e.target as HTMLElement).style.boxShadow = 'none';
+                            }}
+                          >
+                            {currentStatus}
+                            <svg 
+                              width="12" 
+                              height="12" 
+                              viewBox="0 0 24 24" 
+                              fill="currentColor"
+                              style={{
+                                transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                                transition: 'transform 0.2s ease'
+                              }}
+                            >
+                              <path d="M7 10L12 15L17 10H7Z"/>
+                            </svg>
+                          </span>
+
+                          {/* Dropdown Menu */}
+                          {isDropdownOpen && (
+                            <div style={{
+                              position: 'absolute',
+                              top: '100%',
+                              left: '50%',
+                              transform: 'translateX(-50%)',
+                              marginTop: '5px',
+                              backgroundColor: 'white',
+                              border: '1px solid #e0e0e0',
+                              borderRadius: '12px',
+                              boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+                              zIndex: 1000,
+                              minWidth: '140px',
+                              overflow: 'hidden',
+                              animation: 'dropdownFadeIn 0.2s ease-out'
+                            }}>
+                              {statusOptions.map((status, index) => {
+                                const optionStyle = getStatusStyle(status);
+                                const isSelected = status === currentStatus;
+                                
+                                return (
+                                  <div
+                                    key={status}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleStatusChange(orderId, status);
+                                    }}
+                                    style={{
+                                      padding: '12px 16px',
+                                      cursor: 'pointer',
+                                      transition: 'all 0.2s ease',
+                                      backgroundColor: isSelected ? optionStyle.backgroundColor : 'transparent',
+                                      color: isSelected ? optionStyle.color : '#333',
+                                      borderBottom: index < statusOptions.length - 1 ? '1px solid #f0f0f0' : 'none',
+                                      fontSize: '0.9rem',
+                                      fontWeight: isSelected ? '500' : '400',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'space-between'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                      if (!isSelected) {
+                                        (e.target as HTMLElement).style.backgroundColor = '#f8f9fa';
+                                      }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                      if (!isSelected) {
+                                        (e.target as HTMLElement).style.backgroundColor = 'transparent';
+                                      }
+                                    }}
+                                  >
+                                    {status}
+                                    {isSelected && (
+                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z"/>
+                                      </svg>
+                                    )}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
+
+                {/* Add this CSS somewhere in your component or global styles */}
+                <style>{`
+                  @keyframes dropdownFadeIn {
+                    from {
+                      opacity: 0;
+                      transform: translateX(-50%) translateY(-10px);
+                    }
+                    to {
+                      opacity: 1;
+                      transform: translateX(-50%) translateY(0);
+                    }
+                  }
+                `}</style>
               </div>
             )}
             

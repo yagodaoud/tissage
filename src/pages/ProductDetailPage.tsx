@@ -49,7 +49,7 @@ const ProductDetailPage = () => {
       <div className="container" style={{ padding: '40px 0' }}>
         <div className="breadcrumbs" style={{ marginBottom: '20px' }}>
           <Link to="/" style={{ color: 'var(--dark-gray)' }}>Home</Link> &gt; 
-          <Link to="/products" style={{ color: 'var(--dark-gray)', margin: '0 5px' }}>Produtos</Link> &gt; 
+          <Link to="/produtos" style={{ color: 'var(--dark-gray)', margin: '0 5px' }}>Produtos</Link> &gt; 
           <span style={{ color: 'var(--mineral-green)' }}>{product.name}</span>
         </div>
         
@@ -235,7 +235,7 @@ const ProductDetailPage = () => {
               .slice(0, 4)
               .map(relatedProduct => (
                 <div key={relatedProduct.id} className="product-card">
-                  <Link to={`/products/${relatedProduct.id}`}>
+                  <Link to={`/produtos/${relatedProduct.id}`}>
                     <div className="product-image" style={{ 
                       height: '150px', 
                       backgroundColor: '#f0f0f0', 

@@ -34,7 +34,7 @@ const CartPage = () => {
         {cartItems.length === 0 ? (
           <div className="empty-cart" style={{ textAlign: 'center', padding: '40px 0' }}>
             <p style={{ fontSize: '1.2rem', marginBottom: '20px' }}>Seu carrinho está vazio</p>
-            <Link to="/products" className="button">Continuar Comprando</Link>
+            <Link to="/produtos" className="button">Continuar Comprando</Link>
           </div>
         ) : (
           <div className="cart-content" style={{ 
@@ -80,7 +80,7 @@ const CartPage = () => {
                   
                   <div className="item-details">
                     <h3 style={{ marginBottom: '5px' }}>
-                      <Link to={`/products/${item.id}`} style={{ color: 'var(--mineral-green)' }}>
+                      <Link to={`/produtos/${item.id}`} style={{ color: 'var(--mineral-green)' }}>
                         {item.name}
                       </Link>
                     </h3>
@@ -201,7 +201,7 @@ const CartPage = () => {
               </Link>
               
               <Link 
-                to="/products" 
+                to="/produtos" 
                 style={{ 
                   display: 'block',
                   textAlign: 'center',
