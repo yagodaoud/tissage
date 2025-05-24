@@ -42,6 +42,165 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
 
   const statusOptions = ['Embalado', 'Enviado', 'Entregue'];
 
+  const generateNotaFiscal = (orderId: any) => {
+    // Create a new window with the invoice content
+    const printWindow = window.open('', '_blank', 'width=800,height=600');
+    
+    const invoiceContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Nota Fiscal - Pedido #${10000 + orderId}</title>
+        <style>
+          body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            line-height: 1.6;
+          }
+          .header { 
+            text-align: center; 
+            border-bottom: 2px solid #333; 
+            padding-bottom: 20px; 
+            margin-bottom: 30px;
+          }
+          .invoice-details { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
+            margin-bottom: 30px;
+          }
+          .section { 
+            border: 1px solid #ddd; 
+            padding: 15px; 
+            border-radius: 5px;
+          }
+          .section h3 { 
+            margin-top: 0; 
+            color: #333;
+          }
+          .items-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0;
+          }
+          .items-table th, .items-table td { 
+            border: 1px solid #ddd; 
+            padding: 12px; 
+            text-align: left;
+          }
+          .items-table th { 
+            background-color: #f5f5f5; 
+            font-weight: bold;
+          }
+          .total-section { 
+            text-align: right; 
+            margin-top: 20px; 
+            font-size: 18px; 
+            font-weight: bold;
+          }
+          @media print {
+            body { margin: 0; }
+            .no-print { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>NOTA FISCAL</h1>
+          <p>Número: NF-${String(orderId).padStart(6, '0')}</p>
+          <p>Data de Emissão: ${new Date().toLocaleDateString('pt-BR')}</p>
+        </div>
+        
+        <div class="invoice-details">
+          <div class="section">
+            <h3>Dados da Empresa</h3>
+            <p><strong>Sua Empresa LTDA</strong></p>
+            <p>CNPJ: 12.345.678/0001-90</p>
+            <p>Endereço: Rua Exemplo, 123</p>
+            <p>Cidade - Estado, CEP 12345-678</p>
+            <p>Tel: (11) 1234-5678</p>
+          </div>
+          
+          <div class="section">
+            <h3>Dados do Cliente</h3>
+            <p><strong>Nome do Cliente</strong></p>
+            <p>CPF/CNPJ: 123.456.789-00</p>
+            <p>Endereço: Rua do Cliente, 456</p>
+            <p>Cidade - Estado, CEP 87654-321</p>
+            <p>Tel: (11) 8765-4321</p>
+          </div>
+        </div>
+        
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Descrição</th>
+              <th>Qtd</th>
+              <th>Valor Unit.</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>001</td>
+              <td>Produto Exemplo 1</td>
+              <td>2</td>
+              <td>R$ 50,00</td>
+              <td>R$ 100,00</td>
+            </tr>
+            <tr>
+              <td>002</td>
+              <td>Produto Exemplo 2</td>
+              <td>1</td>
+              <td>R$ 75,00</td>
+              <td>R$ 75,00</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="total-section">
+          <p>Subtotal: R$ 175,00</p>
+          <p>Impostos: R$ 25,00</p>
+          <p><strong>Total Geral: R$ 200,00</strong></p>
+        </div>
+        
+        <div style="margin-top: 40px; text-align: center; color: #666;">
+          <p>Esta é uma nota fiscal simplificada gerada automaticamente.</p>
+          <p>Pedido #${10000 + orderId} - ${new Date().toLocaleDateString('pt-BR')}</p>
+        </div>
+        
+        <div class="no-print" style="text-align: center; margin-top: 30px;">
+          <button onclick="window.print()" style="
+            background-color: #007bff; 
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin-right: 10px;
+          ">Imprimir</button>
+          <button onclick="window.close()" style="
+            background-color: #6c757d; 
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+          ">Fechar</button>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    printWindow?.document.write(invoiceContent);
+    printWindow?.document.close();
+    
+    printWindow?.focus();
+  };
+
   const getStatusStyle = (status: string) => {
     const styles: StatusStyles = {
       'Embalado': {
@@ -342,7 +501,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                 }} onClick={handleClickOutside}>
                   <div className="orders-header" style={{
                     display: 'grid',
-                    gridTemplateColumns: '1fr 2fr 1fr 1fr 1fr',
+                    gridTemplateColumns: '1fr 2fr 1fr 1fr 1fr 100px',
                     gap: '15px',
                     padding: '15px 20px',
                     backgroundColor: 'var(--light-gray)',
@@ -353,6 +512,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     <div>Data</div>
                     <div>Total</div>
                     <div>Status</div>
+                    <div>Nota Fiscal</div>
                   </div>
                 
                   {[1, 2, 3, 4].map(orderId => {
@@ -363,7 +523,7 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                     return (
                       <div key={orderId} className="order-row" style={{
                         display: 'grid',
-                        gridTemplateColumns: '1fr 2fr 1fr 1fr 1fr',
+                        gridTemplateColumns: '1fr 2fr 1fr 1fr 1fr 100px',
                         gap: '15px',
                         padding: '15px 20px',
                         borderBottom: '1px solid var(--light-gray)',
@@ -495,12 +655,55 @@ const ArtisanDashboardPage: React.FC<ArtisanDashboardPageProps> = () => {
                             </div>
                           )}
                         </div>
+                        
+                        <div className="nota-fiscal-action" style={{ 
+                          display: 'flex', 
+                          justifyContent: 'center' 
+                        }}>
+                          <button
+                            onClick={() => generateNotaFiscal(orderId)}
+                            style={{
+                              background: 'none',
+                              border: 'none',
+                              cursor: 'pointer',
+                              padding: '8px',
+                              borderRadius: '6px',
+                              transition: 'all 0.2s ease',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center'
+                            }}
+                            onMouseEnter={(e) => {
+                              (e.target as HTMLElement).style.backgroundColor = '#f0f9ff';
+                              (e.target as HTMLElement).style.transform = 'scale(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                              (e.target as HTMLElement).style.backgroundColor = 'transparent';
+                              (e.target as HTMLElement).style.transform = 'scale(1)';
+                            }}
+                            title="Gerar Nota Fiscal"
+                          >
+                            <svg 
+                              width="20" 
+                              height="20" 
+                              viewBox="0 0 24 24" 
+                              fill="none" 
+                              stroke="#0ea5e9" 
+                              strokeWidth="2"
+                            >
+                              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                              <polyline points="14,2 14,8 20,8"/>
+                              <line x1="16" y1="13" x2="8" y2="13"/>
+                              <line x1="16" y1="17" x2="8" y2="17"/>
+                              <polyline points="10,9 9,9 8,9"/>
+                            </svg>
+                          </button>
+                        </div>
                       </div>
                     );
                   })}
                 </div>
 
-                {/* Add this CSS somewhere in your component or global styles */}
                 <style>{`
                   @keyframes dropdownFadeIn {
                     from {
