@@ -13,7 +13,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
     city: '',
     state: '',
     zipCode: '',
-    country: 'Brazil',
+    country: 'Brasil',
     cardName: '',
     cardNumber: '',
     expDate: '',
@@ -91,7 +91,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                 margin: '0 auto 10px',
                 fontWeight: 'bold'
               }}>1</div>
-              Shipping
+              Envio
             </div>
             
             <div className="progress-step" style={{ 
@@ -111,7 +111,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                 margin: '0 auto 10px',
                 fontWeight: 'bold'
               }}>2</div>
-              Payment
+              Pagamento
             </div>
             
             <div className="progress-step" style={{ 
@@ -131,7 +131,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                 margin: '0 auto 10px',
                 fontWeight: 'bold'
               }}>3</div>
-              Confirmation
+              Confirmação
             </div>
           </div>
         </div>
@@ -308,7 +308,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                       }}
                       required
                     >
-                      <option value="Brazil">Brazil</option>
+                      <option value="Brazil">Brasil</option>
                       <option value="Argentina">Argentina</option>
                       <option value="Chile">Chile</option>
                       <option value="Colombia">Colombia</option>
@@ -541,8 +541,8 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                     paddingBottom: '10px',
                     borderBottom: '1px solid var(--light-gray)'
                   }}>
-                    <span>Date:</span>
-                    <span>May 22, 2025</span>
+                    <span>Data:</span>
+                    <span>22 de maio de 2025</span>
                   </div>
                   
                   <div style={{ 
@@ -560,7 +560,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                     display: 'flex',
                     justifyContent: 'space-between'
                   }}>
-                    <span>Shipping Address:</span>
+                    <span>Endereço de Entrega:</span>
                     <span style={{ textAlign: 'right' }}>
                       {formData.firstName} {formData.lastName}<br />
                       {formData.address}<br />
@@ -577,6 +577,10 @@ const CheckoutPage: React.FC<CheckoutPageProps> = () => {
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
                   <Link to="/" className="button">
                     Voltar ao Site
+                  </Link>
+                  
+                  <Link to="/profile#pedidos" className="button">
+                    Acompanhar Pedido
                   </Link>
                   
                   <button 

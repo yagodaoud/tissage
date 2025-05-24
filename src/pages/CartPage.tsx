@@ -96,10 +96,14 @@ const CartPage = () => {
                           height: '30px', 
                           border: '1px solid var(--medium-gray)',
                           background: 'none',
-                          cursor: 'pointer'
+                          cursor: 'pointer',
+                          color: 'black',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'flex-start'
                         }}
                       >
-                        -
+                      <span style={{ marginTop: '-5px' }}>-</span>
                       </button>
                       
                       <span style={{ 
@@ -117,10 +121,14 @@ const CartPage = () => {
                           height: '30px', 
                           border: '1px solid var(--medium-gray)',
                           background: 'none',
-                          cursor: 'pointer'
+                          cursor: 'pointer',
+                          color: 'black',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'flex-start'
                         }}
                       >
-                        +
+                        <span style={{ marginTop: '-5px' }}>+</span>
                       </button>
                     </div>
                   </div>

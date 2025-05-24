@@ -18,6 +18,7 @@ import ArtisanDashboardPage from './pages/ArtisanDashboardPage';
 
 // Styles
 import './App.css';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="/produtos" element={<ProductListPage />} />
             <Route path="/produtos/:id" element={<ProductDetailPage />} />
             <Route path="/artesaos" element={<ArtisanPage />} />
