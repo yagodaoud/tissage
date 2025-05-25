@@ -164,7 +164,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 <button className="button">Adicionar ao Carrinho</button>
               </div>
             </Link>
-            <Link to="/produtos/5" className="product-card">
+            <Link to="/produtos/4" className="product-card">
               <div className="product-image">Imagem do Produto</div>
               <div className="product-info">
                 <h3 className="product-name">Escultura de Madeira</h3>
@@ -173,7 +173,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 <button className="button">Adicionar ao Carrinho</button>
               </div>
             </Link>
-            <Link to="/produtos/6" className="product-card">
+            <Link to="/produtos/4" className="product-card">
               <div className="product-image">Imagem do Produto</div>
               <div className="product-info">
                 <h3 className="product-name">Bolsa de Couro</h3>

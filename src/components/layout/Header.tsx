@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css';
+import { useAuth } from '../../hooks/AuthContext';
 
 interface HeaderProps {}
 
@@ -8,6 +9,8 @@ const Header: React.FC<HeaderProps> = () => {
   const [activeTab, setActiveTab] = useState<string>('home');
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
+  const navigate = useNavigate();
+  const { isAuthenticated, user, logout, getUserType } = useAuth();
 
   useEffect(() => {
     const controlHeader = () => {
@@ -35,6 +38,21 @@ const Header: React.FC<HeaderProps> = () => {
     };
   }, [lastScrollY]);
 
+    const handleLogout = () => {
+    logout();
+    navigate('/', { replace: true });
+    setActiveTab('');
+  };
+
+  const handleAuthAction = () => {
+    if (isAuthenticated) {
+      handleLogout();
+    } else {
+      navigate('/login');
+      setActiveTab('');
+    }
+  };
+
   return (
     <header className={`tissage-header ${isVisible ? 'header-visible' : 'header-hidden'}`}>
       {/* Logo Row */}
@@ -48,12 +66,47 @@ const Header: React.FC<HeaderProps> = () => {
       <div className="header-container">
         <div className="header-left">
           <div className="logo-small">
-            <img src="/resources/s-logo.png" alt="S Logo" className="s-logo-img" />
+            {isAuthenticated ? (
+              // Show user profile icon with border when logged in
+              <div
+                className="user-profile"
+                style={{
+                  width: '60px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--mineral-green)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '24px',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  border: '2px solid var(--strawberry-cream)',
+                  boxShadow: '0 0 10px rgba(255, 105, 180, 0.4)', // brilho rosa sutil
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 105, 180, 0.7)';
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 0 10px rgba(255, 105, 180, 0.4)';
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+                onClick={() => navigate(getUserType() === 'admin' ? '/admin' : getUserType() === 'artesao' ? '/artesao/1' : '/profile')}
+              >
+                {user?.email?.charAt(0).toUpperCase() || 'U'}
+              </div>
+            ) : (
+              <img src="/resources/s-logo.png" alt="Tissage Logo" className="s-logo-img" />
+            )}
           </div>
-          <Link to="/login"
-          onClick={() => setActiveTab('')}>
-            <button className="partner-button">Login</button>
-          </Link>
+          <button 
+            className="partner-button"
+            onClick={handleAuthAction}
+          >
+            {isAuthenticated ? 'Sair' : 'Login'}
+          </button>
         </div>
        
         <div className="header-center">

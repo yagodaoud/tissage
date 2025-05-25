@@ -20,30 +20,33 @@ import ArtisanDashboardPage from './pages/ArtisanDashboardPage';
 import './App.css';
 import UserProfile from './pages/UserProfile';
 import AdminDashboard from './pages/AdminDashboard';
+import { AuthProvider } from './hooks/AuthContext';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/profile" element={<UserProfile />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/produtos" element={<ProductListPage />} />
-            <Route path="/produtos/:id" element={<ProductDetailPage />} />
-            <Route path="/artesaos" element={<ArtisanPage />} />
-            <Route path="/carrinho" element={<CartPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/artesao/:id" element={<ArtisanDashboardPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="app">
+          <Header />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/produtos" element={<ProductListPage />} />
+              <Route path="/produtos/:id" element={<ProductDetailPage />} />
+              <Route path="/artesaos" element={<ArtisanPage />} />
+              <Route path="/carrinho" element={<CartPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/artesao/:id" element={<ArtisanDashboardPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/AuthContext';
 
 const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login, determineUserType } = useAuth();
 
   const determineRedirectPath = (email: string) => {
     // Regex patterns to check what's between @ and .
@@ -31,12 +33,17 @@ const LoginPage = () => {
       // Get form data
       const formData = new FormData(e.target);
       const email = formData.get('email');
+      const emailStr = email?.toString() || '';
       
-      // Your login validation and API calls here
+      // Mock login validation
       await new Promise(resolve => setTimeout(resolve, 1000));
       
+      // Determine user type and login
+      const userType = determineUserType(emailStr);
+      login(emailStr, userType);
+      
       // Determine redirect path based on email
-      const redirectPath = determineRedirectPath(email?.toString() || '');
+      const redirectPath = determineRedirectPath(emailStr);
       
       // Navigate to the appropriate path
       navigate(redirectPath, { replace: true });

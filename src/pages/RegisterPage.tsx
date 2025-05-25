@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/AuthContext';
+
 
 const RegisterPage = () => {
   const [accountType, setAccountType] = useState('customer');
   const navigate = useNavigate();
+    const { login, determineUserType } = useAuth();
+
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+
+    const formData = new FormData(e.target);
     
-    console.log('Account Type:', accountType);
+    const email = formData.get('email');
+    
+    const emailStr = email?.toString() || '';
+    
+    const userType = determineUserType(emailStr);
+    login(emailStr, userType);
     
     if (accountType === 'artisan') {
       navigate('/artesao/1');
@@ -129,7 +140,8 @@ const RegisterPage = () => {
               E-mail
             </label>
             <input 
-              type="email" 
+              type="email"
+              name="email"
               id="email" 
               placeholder="Digite seu e-mail"
               style={{ 
