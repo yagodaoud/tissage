@@ -98,20 +98,24 @@ const HomePage: React.FC<HomePageProps> = () => {
           </div>
           <div className="categories-grid">
             <Link to="/produtos?category=Textiles" className="category-card">
-              <div className="category-image">Imagem da Categoria</div>
-              <h3 className="category-name">Têxteis</h3>
+              <div className="category-image">
+                <h3 className="category-name">Têxteis</h3>
+              </div>
             </Link>
             <Link to="/produtos?category=Ceramics" className="category-card">
-              <div className="category-image">Imagem da Categoria</div>
-              <h3 className="category-name">Cerâmica</h3>
+              <div className="category-image">
+                <h3 className="category-name">Cerâmica</h3>
+              </div>
             </Link>
             <Link to="/produtos?category=Jewelry" className="category-card">
-              <div className="category-image">Imagem da Categoria</div>
-              <h3 className="category-name">Joias</h3>
+              <div className="category-image">
+                <h3 className="category-name">Joias</h3>
+              </div>
             </Link>
             <Link to="/produtos?category=Woodwork" className="category-card">
-              <div className="category-image">Imagem da Categoria</div>
-              <h3 className="category-name">Marcenaria</h3>
+              <div className="category-image">
+                <h3 className="category-name">Marcenaria</h3>
+              </div>
             </Link>
           </div>
         </div>
@@ -124,7 +128,7 @@ const HomePage: React.FC<HomePageProps> = () => {
             <h2>Produtos em Destaque</h2>
           </div>
           <div className="products-grid">
-            <Link to="/produto/1" className="product-card">
+            <Link to="/produtos/1" className="product-card">
               <div className="product-image">Imagem do Produto</div>
               <div className="product-info">
                 <h3 className="product-name">Cesta de Palha</h3>
@@ -133,7 +137,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 <button className="button">Adicionar ao Carrinho</button>
               </div>
             </Link>
-            <Link to="/produto/2" className="product-card">
+            <Link to="/produtos/2" className="product-card">
               <div className="product-image">Imagem do Produto</div>
               <div className="product-info">
                 <h3 className="product-name">Vaso de Cerâmica</h3>
@@ -142,7 +146,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 <button className="button">Adicionar ao Carrinho</button>
               </div>
             </Link>
-            <Link to="/produto/3" className="product-card">
+            <Link to="/produtos/3" className="product-card">
               <div className="product-image">Imagem do Produto</div>
               <div className="product-info">
                 <h3 className="product-name">Colar de Miçangas</h3>
@@ -157,6 +161,24 @@ const HomePage: React.FC<HomePageProps> = () => {
                 <h3 className="product-name">Tábua de Madeira</h3>
                 <p className="product-artisan">Por Carlos Mendes</p>
                 <p className="product-price">R$55,00</p>
+                <button className="button">Adicionar ao Carrinho</button>
+              </div>
+            </Link>
+            <Link to="/produtos/5" className="product-card">
+              <div className="product-image">Imagem do Produto</div>
+              <div className="product-info">
+                <h3 className="product-name">Escultura de Madeira</h3>
+                <p className="product-artisan">Por Paulo Matos</p>
+                <p className="product-price">R$80,00</p>
+                <button className="button">Adicionar ao Carrinho</button>
+              </div>
+            </Link>
+            <Link to="/produtos/6" className="product-card">
+              <div className="product-image">Imagem do Produto</div>
+              <div className="product-info">
+                <h3 className="product-name">Bolsa de Couro</h3>
+                <p className="product-artisan">Por Maria Lucia</p>
+                <p className="product-price">R$70,00</p>
                 <button className="button">Adicionar ao Carrinho</button>
               </div>
             </Link>
