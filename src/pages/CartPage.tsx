@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const CartPage = () => {
   // Mock cart items
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: 'Manta de Algodão Tecida à Mão', price: 89.99, quantity: 1, image: '/assets/products/throw1.jpg' },
-    { id: 4, name: 'Tigela de Madeira', price: 65.00, quantity: 2, image: '/assets/products/bowl1.jpg' },
+    { id: 1, name: 'Manta de Algodão Tecida à Mão', price: 89.99, quantity: 1, image: '/resources/manta-algodão.jpg' },
+    { id: 4, name: 'Tigela de Madeira', price: 65.00, quantity: 2, image: '/resources/tigela.jpg' },
   ]);
   
   const updateQuantity = (id: number, newQuantity: number) => {
@@ -67,15 +67,8 @@ const CartPage = () => {
                   borderBottom: '1px solid var(--medium-gray)',
                   alignItems: 'center'
                 }}>
-                  <div className="item-image" style={{ 
-                    height: '80px',
-                    backgroundColor: '#f0f0f0',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    color: '#999'
-                  }}>
-                    Imagem
+                  <div className="item-image">
+                    <img src={item.image} alt={item.name} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
                   </div>
                   
                   <div className="item-details">

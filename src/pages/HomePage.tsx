@@ -98,23 +98,23 @@ const HomePage: React.FC<HomePageProps> = () => {
           </div>
           <div className="categories-grid">
             <Link to="/produtos?category=Textiles" className="category-card">
-              <div className="category-image">
-                <h3 className="category-name">Têxteis</h3>
+              <div className="category-image category-image-textiles">
+                <h3 className="category-name">Arte e Decoração</h3>
               </div>
             </Link>
             <Link to="/produtos?category=Ceramics" className="category-card">
-              <div className="category-image">
-                <h3 className="category-name">Cerâmica</h3>
+              <div className="category-image category-image-ceramics">
+                <h3 className="category-name">Velas e Essências</h3>
               </div>
             </Link>
             <Link to="/produtos?category=Jewelry" className="category-card">
-              <div className="category-image">
-                <h3 className="category-name">Joias</h3>
+              <div className="category-image category-image-jewelry">
+                <h3 className="category-name">Cama, Mesa e Banho</h3>
               </div>
             </Link>
             <Link to="/produtos?category=Woodwork" className="category-card">
-              <div className="category-image">
-                <h3 className="category-name">Marcenaria</h3>
+              <div className="category-image category-image-woodwork">
+                <h3 className="category-name">Joias e Acessórios</h3>
               </div>
             </Link>
           </div>
@@ -129,7 +129,8 @@ const HomePage: React.FC<HomePageProps> = () => {
           </div>
           <div className="products-grid">
             <Link to="/produtos/1" className="product-card">
-              <div className="product-image">Imagem do Produto</div>
+              <div className="product-image" style={{backgroundImage: "url('resources/cesta-de-palha.jpg')"}}>
+              </div>
               <div className="product-info">
                 <h3 className="product-name">Cesta de Palha</h3>
                 <p className="product-artisan">Por Maria Silva</p>
@@ -138,7 +139,8 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
             </Link>
             <Link to="/produtos/2" className="product-card">
-              <div className="product-image">Imagem do Produto</div>
+              <div className="product-image" style={{backgroundImage: "url('resources/vaso-de-cerâmica.jpg')"}}>
+              </div>
               <div className="product-info">
                 <h3 className="product-name">Vaso de Cerâmica</h3>
                 <p className="product-artisan">Por João Santos</p>
@@ -147,7 +149,8 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
             </Link>
             <Link to="/produtos/3" className="product-card">
-              <div className="product-image">Imagem do Produto</div>
+              <div className="product-image" style={{backgroundImage: "url('resources/colar-miçangas.jpg')"}}>
+              </div>
               <div className="product-info">
                 <h3 className="product-name">Colar de Miçangas</h3>
                 <p className="product-artisan">Por Ana Oliveira</p>
@@ -156,7 +159,8 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
             </Link>
             <Link to="/produto/4" className="product-card">
-              <div className="product-image">Imagem do Produto</div>
+              <div className="product-image" style={{backgroundImage: "url('resources/tábua-madeira.jpg')"}}>
+              </div>
               <div className="product-info">
                 <h3 className="product-name">Tábua de Madeira</h3>
                 <p className="product-artisan">Por Carlos Mendes</p>
@@ -165,7 +169,8 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
             </Link>
             <Link to="/produtos/4" className="product-card">
-              <div className="product-image">Imagem do Produto</div>
+              <div className="product-image" style={{backgroundImage: "url('resources/escultura-madeira.jpg')"}}>
+              </div>
               <div className="product-info">
                 <h3 className="product-name">Escultura de Madeira</h3>
                 <p className="product-artisan">Por Paulo Matos</p>
@@ -174,7 +179,8 @@ const HomePage: React.FC<HomePageProps> = () => {
               </div>
             </Link>
             <Link to="/produtos/4" className="product-card">
-              <div className="product-image">Imagem do Produto</div>
+              <div className="product-image" style={{backgroundImage: "url('resources/bolsa-couro.jpg')"}}>
+              </div>
               <div className="product-info">
                 <h3 className="product-name">Bolsa de Couro</h3>
                 <p className="product-artisan">Por Maria Lucia</p>
@@ -193,7 +199,7 @@ const HomePage: React.FC<HomePageProps> = () => {
             <h2>Conheça Nossos Artesãos</h2>
           </div>
           <div className="artisan-card">
-            <div className="artisan-image">Imagem do Artesão</div>
+            <div className="artisan-image" style={{backgroundImage: "url('resources/mulher.jpg')"}}></div>
             <div className="artisan-info">
               <h3 className="artisan-name">Maria Silva</h3>
               <p className="artisan-specialty">Têxteis Artesanais</p>
@@ -204,7 +210,7 @@ const HomePage: React.FC<HomePageProps> = () => {
             </div>
           </div>
           <div className="artisan-card">
-            <div className="artisan-image">Imagem do Artesão</div>
+            <div className="artisan-image" style={{backgroundImage: "url('resources/homem.jpg')"}}></div>
             <div className="artisan-info">
               <h3 className="artisan-name">João Santos</h3>
               <p className="artisan-specialty">Cerâmica</p>
@@ -221,7 +227,7 @@ const HomePage: React.FC<HomePageProps> = () => {
       <section className="about">
         <div className="container">
           <div className="about-content">
-            <div className="about-image">Imagem Sobre</div>
+            <div className="about-image" style={{backgroundImage: "url('resources/banner-institucional.png')"}}></div>
             <div className="about-text">
               <h2>Nossa Missão</h2>
               <p>A TISSAGE foi fundada com uma missão simples: conectar artesãos talentosos com clientes que valorizam qualidade e o feito à mão.</p>

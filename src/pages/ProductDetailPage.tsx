@@ -60,17 +60,12 @@ const ProductDetailPage = () => {
           marginBottom: '60px'
         }}>
           <div className="product-images">
-            <div className="main-image" style={{ 
-              height: '400px', 
-              backgroundColor: '#f0f0f0',
+            <div className="product-image" style={{
+               height: '400px', 
               marginBottom: '15px',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
-              color: '#999'
-            }}>
-              Imagem {activeImage + 1}
-            </div>
+              alignItems: 'center', backgroundImage: `url(/${product.image})` }}></div>
             
             <div className="image-thumbnails" style={{ 
               display: 'flex', 
@@ -83,12 +78,14 @@ const ProductDetailPage = () => {
                   style={{ 
                     width: '80px', 
                     height: '80px', 
-                    backgroundColor: activeImage === index ? 'var(--strawberry-cream)' : '#f0f0f0',
+                    backgroundImage: `url(/${product.image})`,
                     cursor: 'pointer',
                     display: 'flex',
+                    backgroundSize: 'cover', // Add this
+                    backgroundPosition: 'center', // Add this
+                    backgroundRepeat: 'no-repeat', // Add this
                     justifyContent: 'center',
                     alignItems: 'center',
-                    color: '#999',
                     border: activeImage === index ? '2px solid var(--mineral-green)' : 'none'
                   }}
                 >

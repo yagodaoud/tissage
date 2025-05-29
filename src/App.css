@@ -182,9 +182,23 @@
   align-items: flex-end;
   justify-content: center;
   position: relative;
-  background-image: url('resources/category-1.jpg'); /* Replace with your actual image path */
 }
 
+.category-image-textiles {
+  background-image: url('resources/decoração-cat.jpg');
+}
+
+.category-image-ceramics {
+  background-image: url('resources/velas-cat.jpg');
+}
+
+.category-image-jewelry {
+  background-image: url('resources/mesa-banho-cat.jpg');
+}
+
+.category-image-woodwork {
+  background-image: url('resources/jóias-cat.jpg');
+}
 
 .category-name {
   font-weight: 600;
@@ -222,6 +236,9 @@
   }
   
   .product-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
     height: 200px;
     background-color: var(--light-gray);
@@ -270,6 +287,9 @@
   
   .artisan-image {
     width: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: var(--light-gray);
     display: flex;
     align-items: center;
@@ -313,6 +333,9 @@
   .about-image {
     width: 100%;
     height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: var(--light-gray);
     border-radius: 8px;
     display: flex;
