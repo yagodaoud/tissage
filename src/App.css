@@ -185,19 +185,19 @@
 }
 
 .category-image-textiles {
-  background-image: url('/decoração-cat.jpg');
+  background-image: url('/resources/decoração-cat.jpg');
 }
 
 .category-image-ceramics {
-  background-image: url('/velas-cat.jpg');
+  background-image: url('/resources/velas-cat.jpg');
 }
 
 .category-image-jewelry {
-  background-image: url('/mesa-banho-cat.jpg');
+  background-image: url('/resources/mesa-banho-cat.jpg');
 }
 
 .category-image-woodwork {
-  background-image: url('/jóias-cat.jpg');
+  background-image: url('/resources/jóias-cat.jpg');
 }
 
 .category-name {
