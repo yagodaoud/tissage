@@ -46,7 +46,6 @@ const ArtisanPage = () => {
               marginBottom: '15px'
             }}>
               <div className="stars" style={{ color: 'goldenrod', marginRight: '10px' }}>
-                {'★'.repeat(Math.floor(artisan.rating))}
               </div>
               <span>{artisan.rating.toFixed(1)}</span>
             </div>

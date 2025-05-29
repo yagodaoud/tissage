@@ -206,7 +206,7 @@ const HomePage: React.FC<HomePageProps> = () => {
               <p className="artisan-bio">
                 Maria tece tecidos tradicionais brasileiros há mais de 20 anos, utilizando técnicas transmitidas por gerações. Cada peça conta uma história de herança e habilidade artesanal.
               </p>
-              <Link to="/artesao/1" className="button">Ver Perfil</Link>
+              <Link to="/artesaos" className="button">Ver Perfil</Link>
             </div>
           </div>
           <div className="artisan-card">
@@ -217,7 +217,7 @@ const HomePage: React.FC<HomePageProps> = () => {
               <p className="artisan-bio">
                 João cria peças cerâmicas inspiradas nas paisagens naturais de sua cidade litorânea. Seu trabalho combina técnicas tradicionais com design contemporâneo.
               </p>
-              <Link to="/artesao/2" className="button">Ver Perfil</Link>
+              <Link to="/artesaos" className="button">Ver Perfil</Link>
             </div>
           </div>
         </div>
