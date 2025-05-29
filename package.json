@@ -10,6 +10,9 @@
         "predeploy": "npm run build",
         "deploy": "gh-pages -d dist"
     },
+    "optionalDependencies": {
+        "@rollup/rollup-linux-x64-gnu": "4.6.1"
+    },
     "dependencies": {
         "@types/react-dom": "^19.1.5",
         "@types/react-router-dom": "^5.3.3",
