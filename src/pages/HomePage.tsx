@@ -158,7 +158,7 @@ const HomePage: React.FC<HomePageProps> = () => {
                 <button className="button">Adicionar ao Carrinho</button>
               </div>
             </Link>
-            <Link to="/produto/4" className="product-card">
+            <Link to="/produtos/4" className="product-card">
               <div className="product-image" style={{backgroundImage: "url('resources/tábua-madeira.jpg')"}}>
               </div>
               <div className="product-info">
