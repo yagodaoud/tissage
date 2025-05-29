@@ -1,4 +1,7 @@
-export default {
+import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+export default defineConfig({
     server: {
         allowedHosts: true,
     },
@@ -8,8 +11,8 @@ export default {
                 {
                     src: 'resources',
                     dest: ''
-                }
-            ]
-        })
-    ]
-};
+                },
+            ],
+        }),
+    ],
+});
