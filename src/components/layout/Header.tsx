@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks/AuthContext';
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const [activeTab, setActiveTab] = useState<string>('menu');
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [lastScrollY, setLastScrollY] = useState<number>(0);
   const navigate = useNavigate();
